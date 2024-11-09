@@ -46,19 +46,18 @@ markdown_extensions:
 
 plugins:
   - search
+  - awesome-pages
   - multirepo:
       cleanup: true
       keep_docs_dir: true
       repos:
-        - section: Datapower
-          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True&extra_imports=["*.md"]'
         - section: Rating
           section_path: Domains
           import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True&extra_imports=["*.md"]'
         - section: Policy
           section_path: Domains
           import_url: 'https://github.com/geoking41/policy?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True&extra_imports=["*.md"]'
-  - awesome-pages
+  
 
 
   
