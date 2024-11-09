@@ -1,6 +1,4 @@
-# DataPower Docs Base
-
-## Components of DataPower
+# DataPower Architecture
 
 ```mermaid
 graph TD
