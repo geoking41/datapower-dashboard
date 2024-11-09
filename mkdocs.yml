@@ -4,34 +4,35 @@ site_dir: ./site
 
 theme:
   name: material
-  features:
-    - search.suggest
-    - search.highlighting
-    - navigation.instant
-    - navigation.instant.prefetch
-    - navigation.instant.progress
-    - navigation.sections
-    - navigation.path
-    - navigation.prune
-    - toc.follow
-    - navigation.top
-  palette:
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+  nav_style: nested
+  # features:
+  #   - search.suggest
+  #   - search.highlighting
+  #   - navigation.instant
+  #   - navigation.instant.prefetch
+  #   - navigation.instant.progress
+  #   - navigation.sections
+  #   - navigation.path
+  #   - navigation.prune
+  #   - toc.follow
+  #   - navigation.top
+  # palette:
+  #   # Palette toggle for light mode
+  #   - media: "(prefers-color-scheme: light)"
+  #     scheme: default
+  #     primary: indigo
+  #     accent: indigo
+  #     toggle:
+  #       icon: material/brightness-7
+  #       name: Switch to dark mode
+  #   # Palette toggle for dark mode
+  #   - media: "(prefers-color-scheme: dark)"
+  #     scheme: slate
+  #     primary: indigo
+  #     accent: indigo
+  #     toggle:
+  #       icon: material/brightness-4
+  #       name: Switch to light mode
 
 markdown_extensions:
   - pymdownx.superfences:
