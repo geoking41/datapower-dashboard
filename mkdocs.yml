@@ -2,21 +2,8 @@ site_name: Datapower Docs Base
 docs_dir: ./dashboard
 site_dir: ./site
 
-themes:
+theme:
   name: material
-  palette:
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
   features:
     - search.suggest
     - search.highlighting
@@ -28,6 +15,30 @@ themes:
     - navigation.prune
     - toc.follow
     - navigation.top
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 
 
@@ -38,7 +49,7 @@ plugins:
       keep_docs_dir: false
       repos:
         - section: Home
-          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard/*'
+          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard/*&multi_docs=True'
         - section: Rating
           section_path: Domains
           import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=./&multi_docs=True'
