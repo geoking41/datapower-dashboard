@@ -49,13 +49,15 @@ plugins:
       keep_docs_dir: true
       repos:
         - section: Home
-          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard/*&multi_docs=True'
+          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard/home.md'
+        - section: Domains
+          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard/domains.md'
         - section: Rating
           section_path: Domains
-          import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=./&multi_docs=True'
+          import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=./*&multi_docs=True'
         - section: Policy
           section_path: Domains
-          import_url: 'https://github.com/geoking41/policy?branch=main&edit_uri=/blob/main/&docs_dir=/&multi_docs=True'
+          import_url: 'https://github.com/geoking41/policy?branch=main&edit_uri=/blob/main/&docs_dir=./*&multi_docs=True'
 
 
   
