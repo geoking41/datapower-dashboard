@@ -1,0 +1,22 @@
+site_name: Datapower Docs Base
+docs_dir: ./dashboard
+site_dir: ./site
+
+plugins:
+  - multirepo:
+      cleanup: true
+      keep_docs_dir: false
+      repos:
+        - section: Home
+          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/dashboard/README.md'
+        - section: Domains
+          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/dashboard/domains.md'
+        - section: Rating
+          section_path: Domains
+          import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=./'
+        - section: Policy
+          section_path: Domains
+          import_url: 'https://github.com/geoking41/policy?branch=main&edit_uri=/blob/main/&docs_dir=./'
+
+
+  

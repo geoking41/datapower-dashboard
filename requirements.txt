@@ -1,0 +1,6 @@
+mkdocs
+mkdocs-material
+mkdocs-awesome-pages-plugin
+mkdocs-multirepo-plugin
+mkdocs-monorepo-plugin
+mkdocs-mermaid2-plugin
