@@ -2,7 +2,30 @@ site_name: Datapower Docs Base
 docs_dir: ./dashboard
 site_dir: ./site
 
+themes:
+  name: material
+  palette:
+    scheme: default
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+  features:
+    - search.suggest
+    - search.highlighting
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.path
+    - navigation.prune
+    - toc.follow
+    - navigation.top
+
+
+
 plugins:
+  - search
   - multirepo:
       cleanup: true
       keep_docs_dir: false
