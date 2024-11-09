@@ -37,11 +37,6 @@ jobs:
       - name: Build MkDocs
         run: |
           mkdocs -v build -f ./mkdocs.yml
-      - name: Archive site directory
-        uses: actions/upload-artifact@v4
-        with:
-          name: site
-          path: site
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
