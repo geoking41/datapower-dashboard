@@ -8,9 +8,9 @@ plugins:
       keep_docs_dir: false
       repos:
         - section: Home
-          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/dashboard/README.md'
+          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard'
         - section: Domains
-          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/dashboard/domains.md'
+          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard'
         - section: Rating
           section_path: Domains
           import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=./'
