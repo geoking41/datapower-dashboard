@@ -1,7 +1,9 @@
 ### Domains
 
+A structure of a domain in datapower
+
 ```mermaid
-graph TD
+graph LR
     A[Domain] --> B[Services]
     A --> C[Policies]
     A --> D[Configuration Objects]

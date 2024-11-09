@@ -2,37 +2,38 @@ site_name: Datapower Docs Base
 docs_dir: ./dashboard
 site_dir: ./site
 
+
 theme:
   name: material
   nav_style: nested
-  # features:
-  #   - search.suggest
-  #   - search.highlighting
-  #   - navigation.instant
-  #   - navigation.instant.prefetch
-  #   - navigation.instant.progress
-  #   - navigation.sections
-  #   - navigation.path
-  #   - navigation.prune
-  #   - toc.follow
-  #   - navigation.top
-  # palette:
-  #   # Palette toggle for light mode
-  #   - media: "(prefers-color-scheme: light)"
-  #     scheme: default
-  #     primary: indigo
-  #     accent: indigo
-  #     toggle:
-  #       icon: material/brightness-7
-  #       name: Switch to dark mode
-  #   # Palette toggle for dark mode
-  #   - media: "(prefers-color-scheme: dark)"
-  #     scheme: slate
-  #     primary: indigo
-  #     accent: indigo
-  #     toggle:
-  #       icon: material/brightness-4
-  #       name: Switch to light mode
+  features:
+    - search.suggest
+    - search.highlighting
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.path
+    - navigation.prune
+    - toc.follow
+    - navigation.top
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 
 markdown_extensions:
   - pymdownx.superfences:
@@ -54,9 +55,9 @@ plugins:
         - section: Domains
           import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard/domains.md'
         - section: Rating
-          import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=./*&multi_docs=True'
+          import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True'
         - section: Policy
-          import_url: 'https://github.com/geoking41/policy?branch=main&edit_uri=/blob/main/&docs_dir=./*&multi_docs=True'
+          import_url: 'https://github.com/geoking41/policy?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True'
 
 
   
