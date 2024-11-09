@@ -1,5 +1,4 @@
 site_name: Datapower Docs Base
-docs_dir: ./dashboard
 site_dir: ./site
 
 
@@ -50,14 +49,15 @@ plugins:
       cleanup: true
       keep_docs_dir: true
       repos:
-        - section: Home
-          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard/home.md'
-        - section: Domains
-          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=./dashboard/domains.md'
+        - section: Datapower
+          import_url: 'https://github.com/geoking41/datapower-dashboard?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True&extra_imports=["*.md"]'
         - section: Rating
-          import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True'
+          section_path: Domains
+          import_url: 'https://github.com/geoking41/rating?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True&extra_imports=["*.md"]'
         - section: Policy
-          import_url: 'https://github.com/geoking41/policy?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True'
+          section_path: Domains
+          import_url: 'https://github.com/geoking41/policy?branch=main&edit_uri=/blob/main/&docs_dir=.&multi_docs=True&extra_imports=["*.md"]'
+  - awesome-pages
 
 
   
