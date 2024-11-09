@@ -1,6 +1,6 @@
 site_name: Datapower Docs Base
-site_dir: ./site
-docs_dir: ./dashboard/docs
+site_dir: ../site
+docs_dir: ./docs
 
 
 theme:
