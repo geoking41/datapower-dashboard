@@ -1,6 +1,6 @@
 # DataPower Docs Base
 
-The home of DataPower documentation!!!!
+Components of DataPower
 
 ```mermaid
 graph TD
