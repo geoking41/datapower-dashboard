@@ -1,0 +1,143 @@
+import os
+import re
+from tree_sitter import Language, Parser, Query
+
+# Load tree-sitter HCL language
+HCL_LANGUAGE = Language("tree-sitter-hcl/build/my-languages.so", "hcl")
+parser = Parser()
+parser.set_language(HCL_LANGUAGE)
+
+
+def get_tree_and_code(filepath):
+    with open(filepath, "r") as f:
+        code = f.read()
+    tree = parser.parse(code.encode())
+    return tree, code
+
+
+def comment_data_blocks(tree, code):
+    root = tree.root_node
+    commented_lines = set()
+    for block in root.children:
+        if block.type != "block":
+            continue
+        header = block.child_by_field_name("type")
+        if not header or header.text.decode() != "data":
+            continue
+        labels = block.child_by_field_name("labels")
+        if not labels or labels.child(0).text.decode() != "aws_s3_object":
+            continue
+        start_line = block.start_point[0]
+        end_line = block.end_point[0]
+        for i in range(start_line, end_line + 1):
+            commented_lines.add(i)
+    lines = code.splitlines()
+    for i in sorted(commented_lines):
+        lines[i] = "# " + lines[i]
+    return "\n".join(lines), commented_lines
+
+
+def find_data_usages(tree, code):
+    query_string = """
+    (
+      (attribute
+        (identifier) @attr_name
+        (expression
+          (attribute
+            (attribute
+              (variable_expr
+                (identifier) @prefix
+              )
+              (index
+                (string_lit) @key
+              ) @access
+            )
+            (identifier) @field
+          ) @full_expr
+        )
+      )
+      (#eq? @prefix "data")
+    )
+    """
+    query = Query(HCL_LANGUAGE, query_string)
+    captures = query.captures(tree.root_node)
+    results = []
+    for node, name in captures:
+        if name == "access":
+            key = node.text.decode().strip('"')
+            results.append(key)
+    return set(results)
+
+
+def replace_data_usages_in_code(code, used_keys):
+    for key in used_keys:
+        pattern = rf'data\.aws_s3_object\["{re.escape(key)}"\]'
+        replacement = f'module.publish_lambda["{key}"]'
+        code = re.sub(pattern, replacement, code)
+    return code
+
+
+def inject_depends_on(code, tree, used_keys):
+    lines = code.splitlines()
+    root = tree.root_node
+    for block in root.children:
+        if block.type != "block":
+            continue
+        block_type = block.child_by_field_name("type")
+        if not block_type or block_type.text.decode() not in ["resource", "module"]:
+            continue
+        block_body = block.child_by_field_name("body")
+        block_text = code[block.start_byte:block.end_byte]
+        for key in used_keys:
+            if f'module.publish_lambda["{key}"]' in block_text or f'package_key["{key}"]' in block_text:
+                insert_line = block.start_point[0] + 1
+                indent = "  "
+                depends_line = f'{indent}depends_on = [module.publish_lambda["{key}"]]'
+                # Avoid duplicate injection
+                if depends_line.strip() not in block_text:
+                    lines.insert(insert_line, depends_line)
+    return "\n".join(lines)
+
+
+def process_tf_file(path):
+    tree, code = get_tree_and_code(path)
+    print(f"\n🔍 Processing: {path}")
+
+    # Step 1: Comment out data blocks
+    updated_code, commented_lines = comment_data_blocks(tree, code)
+    if commented_lines:
+        print(f"✅ Commented out {len(commented_lines)} lines from data blocks.")
+
+    # Step 2: Find usages
+    tree2 = parser.parse(updated_code.encode())
+    used_keys = find_data_usages(tree2, updated_code)
+    if used_keys:
+        print(f"🔗 Found usage keys: {', '.join(used_keys)}")
+
+    # Step 3: Replace all data references
+    updated_code = replace_data_usages_in_code(updated_code, used_keys)
+
+    # Step 4: Inject depends_on where needed
+    tree3 = parser.parse(updated_code.encode())
+    updated_code = inject_depends_on(updated_code, tree3, used_keys)
+
+    # Step 5: Save
+    output_path = path + ".updated"
+    with open(output_path, "w") as f:
+        f.write(updated_code)
+    print(f"💾 Updated file written to: {output_path}")
+
+
+def run_on_directory(path):
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            if file.endswith(".tf"):
+                process_tf_file(os.path.join(root, file))
+
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) != 2:
+        print("Usage: python final_lambda_transformer.py <path-to-tf-project>")
+    else:
+        run_on_directory(sys.argv[1])
